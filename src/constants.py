@@ -2,6 +2,12 @@ NGINX_LOAD_BALANCER_CONFIG_TEMPLATE = """events <
     worker_connections 4096;
 >
 
+server <
+    listen 80 default_server;
+    server_name _;
+    return 301 https://$host$request_uri;
+>
+
 http <
     gzip on;
     gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
